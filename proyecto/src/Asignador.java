@@ -21,27 +21,23 @@ public class Asignador {
      * mostrando su solución y la cantidad de candidatos evaluados.
      */
     public void resolver() {
-        System.out.println("=== Estrategia Backtracking ===");
+        // Estrategia Backtracking
         resetearCamiones();
         estadosBack = 0;
         mejorSolucionGlobal = null;
 
-        // Llamar al backtracking con los parámetros adicionales
         Solucion mejorBT = backtracking(0, new ArrayList<>(), 0);
         //Solucion mejorBT = backtracking(0, new ArrayList<>());
         mejorBT.imprimir();
-        System.out.println("Cantidad de estados generados: " + estadosBack);
 
 
 
         resetearCamiones();
 
-        System.out.println("\n=== Estrategia Greedy ===");
+        //Estrategia Greedy
         candidatosGreedy = 0;
         Solucion solGreedy = greedy();
         solGreedy.imprimir();
-        System.out.println("Candidatos considerados: " + candidatosGreedy);
-
     }
 
     /*
