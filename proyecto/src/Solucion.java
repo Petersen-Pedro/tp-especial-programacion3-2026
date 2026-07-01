@@ -1,89 +1,22 @@
 import java.util.*;
 
 public class Solucion {
-    private Map<Camion, List<Paquete>> asignaciones;
-    private List<Paquete> noAsignados;
+    private HashMap<Camion,List<Paquete>> asignaciones;
     private int pesoNoAsignado;
-    private long estadosGenerados;
+    private long metrica;
 
-    public Solucion(List<Camion> camiones) {
-        asignaciones = new LinkedHashMap<>();
-        for (Camion c : camiones) {
-            asignaciones.put(c, new ArrayList<>());
-        }
-        noAsignados = new ArrayList<>();
-        pesoNoAsignado = 0;
-        this.estadosGenerados = 0;
-    }
-
-    /// Backtracking
-    public Solucion(HashMap<Camion, List<Paquete>> asignacion, int pesoNoAsignado, long estadosGenerados) {
-        this.asignaciones = new LinkedHashMap<>();
-        for (Map.Entry<Camion, List<Paquete>> entry : asignacion.entrySet()) {
-            this.asignaciones.put(entry.getKey(), new ArrayList<>(entry.getValue()));
-        }
+    public Solucion( HashMap<Camion,List<Paquete>>asignaciones,int pesoNoAsignado,long metrica) {
+        this.asignaciones = asignaciones;
         this.pesoNoAsignado = pesoNoAsignado;
-        this.estadosGenerados = estadosGenerados;
-
+        this.metrica = metrica;
     }
 
-    public Solucion(Solucion otra) {
-        asignaciones = new LinkedHashMap<>();
-        for (Map.Entry<Camion, List<Paquete>> entry : otra.asignaciones.entrySet()) {
-            asignaciones.put(entry.getKey(), new ArrayList<>(entry.getValue()));
-        }
-        noAsignados = new ArrayList<>(otra.noAsignados);
-        pesoNoAsignado = otra.pesoNoAsignado;
-        this.estadosGenerados = otra.estadosGenerados;
-
-    }
-
-    public long getEstadosGenerados() {
-        return estadosGenerados;
-    }
-
-    public void setEstadosGenerados(long estadosGenerados) {
-        this.estadosGenerados = estadosGenerados;
-    }
-
-
-    public void agregarNoAsignado(Paquete paquete) {
-        noAsignados.add(paquete);
-        pesoNoAsignado += paquete.getPesoKg(); // Mantenemos actualizado
-    }
-
-    public void removerNoAsignado(Paquete paquete) {
-        noAsignados.remove(paquete);
-        pesoNoAsignado -= paquete.getPesoKg(); // Mantener actualizado
-    }
-
-
-    // O(1) en lugar de O(n)
     public int getPesoNoAsignado() {
         return pesoNoAsignado;
     }
-
-    /*
-     * Complejidad: O(n) donde n es la cantidad de paquetes no asignados.
-    public int getPesoNoAsignado() {
-        return noAsignados.stream().mapToInt(Paquete::getPesoKg).sum();
-    }
-     */
-
-    public void imprimir() {
-        for (Map.Entry<Camion, List<Paquete>> entry : asignaciones.entrySet()) {
-            Camion c = entry.getKey();
-            System.out.println("Camion " + c.getId() + " (" + c.getPatente() + "): " + entry.getValue());
-        }
-        System.out.println("Paquetes no asignados: " + noAsignados);
-        System.out.println("Peso no asignado: " + getPesoNoAsignado() + " kg.");
-    }
-    public boolean esMejorQue(Solucion otra) {
-        if (otra == null) return true;
-        return this.getPesoNoAsignado() < otra.getPesoNoAsignado();
+    public long getMetrica() {
+        return metrica;
     }
 
-    public List<Paquete> getNoAsignados() { return noAsignados; }
 
-    public Map<Camion, List<Paquete>> getAsignaciones() { return asignaciones; }
 }

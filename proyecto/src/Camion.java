@@ -10,7 +10,7 @@ public class Camion {
     private List<Paquete> paquetesAsignados;
     private int pesoActual;
 
-    public Camion(int id, String patente, boolean estaRefrigerado, int capacidadKg) {
+    public Camion(int id, String patente, boolean estaRefrigerado, int capacidadKg,  List<Paquete> paquetesAsignados) {
         this.id = id;
         this.patente = patente;
         this.estaRefrigerado = estaRefrigerado;
