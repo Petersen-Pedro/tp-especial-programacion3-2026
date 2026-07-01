@@ -4,6 +4,7 @@ public class Solucion {
     private Map<Camion, List<Paquete>> asignaciones;
     private List<Paquete> noAsignados;
     private int pesoNoAsignado;
+    private long estadosGenerados;
 
     public Solucion(List<Camion> camiones) {
         asignaciones = new LinkedHashMap<>();
@@ -12,6 +13,18 @@ public class Solucion {
         }
         noAsignados = new ArrayList<>();
         pesoNoAsignado = 0;
+        this.estadosGenerados = 0;
+    }
+
+    /// Backtracking
+    public Solucion(HashMap<Camion, List<Paquete>> asignacion, int pesoNoAsignado, long estadosGenerados) {
+        this.asignaciones = new LinkedHashMap<>();
+        for (Map.Entry<Camion, List<Paquete>> entry : asignacion.entrySet()) {
+            this.asignaciones.put(entry.getKey(), new ArrayList<>(entry.getValue()));
+        }
+        this.pesoNoAsignado = pesoNoAsignado;
+        this.estadosGenerados = estadosGenerados;
+
     }
 
     public Solucion(Solucion otra) {
@@ -21,7 +34,18 @@ public class Solucion {
         }
         noAsignados = new ArrayList<>(otra.noAsignados);
         pesoNoAsignado = otra.pesoNoAsignado;
+        this.estadosGenerados = otra.estadosGenerados;
+
     }
+
+    public long getEstadosGenerados() {
+        return estadosGenerados;
+    }
+
+    public void setEstadosGenerados(long estadosGenerados) {
+        this.estadosGenerados = estadosGenerados;
+    }
+
 
     public void agregarNoAsignado(Paquete paquete) {
         noAsignados.add(paquete);
