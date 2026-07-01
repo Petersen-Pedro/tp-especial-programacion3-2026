@@ -43,13 +43,13 @@ public class Main {
 
 
 
-        System.out.println("# BACKTRACKING");
+        System.out.println("\n# BACKTRACKING");
         Solucion solucion = backtracking.asignar(camionesB, paquetesB, true);
         System.out.println("estados: " + solucion.getMetrica());
 
 
 
-        System.out.println("# GREEDY");
+        System.out.println("\n# GREEDY");
         Greedy greedy = new Greedy();
         Solucion solucionG = greedy.asignar(camionesG, paquetesG);
         System.out.println("estados: " + solucionG.getMetrica());

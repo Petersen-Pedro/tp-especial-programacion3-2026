@@ -19,11 +19,6 @@ public class Camion {
         this.pesoActual = 0;
     }
 
-    public int getId() { return id; }
-
-    public String getPatente() { return patente; }
-
-    public boolean estaRefrigerado() { return estaRefrigerado; }
 
     public int getCapacidadKg() {
         return capacidadKg;
@@ -31,11 +26,7 @@ public class Camion {
 
     public int getPesoActual() { return pesoActual; }
 
-    public List<Paquete> getPaquetesAsignados() {
-        return paquetesAsignados;
-    }
 
-    /// puedeAsignar
     public boolean puedeTransportar(Paquete p) {
         if (p.contieneAlimentos() && !this.estaRefrigerado) return false;
         return pesoActual + p.getPesoKg() <= capacidadKg;
@@ -46,20 +37,11 @@ public class Camion {
         pesoActual += p.getPesoKg();
     }
 
-    /// public void asignar(Paquete p) {
-    ///     paquetesAsignados.add(p);
-    ///     pesoActual += p.getPesoKg();
-    /// }
-
     public void quitarPaquete(Paquete p) {
         paquetesAsignados.remove(p);
         pesoActual -= p.getPesoKg();
     }
 
-    public void resetear() {
-        paquetesAsignados.clear();
-        pesoActual = 0;
-    }
 
     @Override
     public String toString() {

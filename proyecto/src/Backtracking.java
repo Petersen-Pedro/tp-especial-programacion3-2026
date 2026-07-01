@@ -12,11 +12,18 @@ public class Backtracking {
 
 
     /*
-    La estrategia consiste en un arbol donde en cada nivel se representa un paquete, y en cada rama una asignacion de camiones disponibles.
+    La estrategia consiste en un arbol donde en cada nivel se
+    representa un paquete, y en cada rama una asignacion de
+    camiones disponibles.
 
-    Se recorren los paquetes en busqueda de un camiones a los que se les pueda asignar, contruyendo posibles soluciones que son comparadas entre si hasta encontrar la mejor solucion posible.
+    Se recorren los paquetes en busqueda de un camiones a los
+    que se les pueda asignar, contruyendo posibles soluciones
+    que son comparadas entre si hasta encontrar la mejor solucion
+    posible.
 
-    La poda consiste en descartasr las ramas que acumulen un peso no asignado mayor o igual al de la mejor solucion encontrada.
+    La poda consiste en descartasr las ramas que acumulen un
+    peso no asignado mayor o igual al de la mejor solucion
+    encontrada.
 
 
      */
@@ -27,7 +34,6 @@ public class Backtracking {
                             boolean ordenar
                             ) {
 
-        //this.poda = poda;
         this.mejorPesoNoAsignado = Integer.MAX_VALUE;
         this.estados = 0;
         this.solucion = null;
@@ -57,7 +63,7 @@ public class Backtracking {
                 solucion = new Solucion(copiarAsignacion(asignacionActual), pesoNoAsignado, estados);
             }
         } else {
-            if (/*!poda ||*/ (pesoNoAsignado < mejorPesoNoAsignado)) {
+            if ((pesoNoAsignado < mejorPesoNoAsignado)) {
                 Paquete p = paquetes.get(index);
 
                 for (Camion c : camiones) {

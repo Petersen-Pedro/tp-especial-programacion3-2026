@@ -97,8 +97,4 @@ public class Servicios {
         }
         return resultado;
     }
-
-    public List<Camion> getCamiones() { return camiones; }
-
-    public Collection<Paquete> getTodosLosPaquetes() { return paquetesPorCodigo.values(); }
 }
